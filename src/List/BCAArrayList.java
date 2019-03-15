@@ -3,8 +3,8 @@ package List;
 import bca.util.BCAList;
 
 public class BCAArrayList implements BCAList{
-    Object[] array;
-    int listSize;
+    protected Object[] array;
+    protected int listSize;
 
 
     public BCAArrayList(){

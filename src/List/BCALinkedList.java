@@ -9,9 +9,9 @@ import bca.util.BCAList;
  *
  */
 public class BCALinkedList implements BCAList{
-    private Node head=null;
-    private Node tail=null;
-    private int listSize=0;
+    protected Node head=null;
+    protected Node tail=null;
+    protected int listSize=0;
 
     public BCALinkedList(){
 
@@ -37,6 +37,7 @@ public class BCALinkedList implements BCAList{
         Node add=new Node(o);
         if(index==0){
             head=add;
+            tail = add;
             listSize++;
             return;
         }
@@ -45,9 +46,8 @@ public class BCALinkedList implements BCAList{
             curNode=curNode.next;
         }
 
-        Node temp=curNode.next;
-        curNode.next=add;
-        add.next=temp;
+        add.next = curNode.next;
+        curNode.next = add;
         if(listSize==index)
             tail=add;
         listSize++;
@@ -55,12 +55,9 @@ public class BCALinkedList implements BCAList{
 
     @Override
     public void clear(){
-        Node curNode=head;
-        for(int i=0;i<listSize;i++){
-            curNode.data=null;
-            curNode=curNode.next;
-        }
-        listSize=0;
+        head = null;
+        tail = null;
+        listSize = 0;
     }
 
     @Override
@@ -176,7 +173,7 @@ public class BCALinkedList implements BCAList{
      * (We can use "private" to hide it from outside classes, but we will leave it accessible)
      */
     private class Node{
-        Object data=null;
+        Object data;
         Node next=null;
 
         public Node(Object o){
