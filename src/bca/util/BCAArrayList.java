@@ -1,19 +1,20 @@
-package List;
+package bca.util;
 
 import bca.util.BCAList;
 
-public class BCAArrayList implements BCAList{
-    protected Object[] array;
+public class BCAArrayList<T> implements BCAList<T>{
+    protected T[] array;
     protected int listSize;
 
-
+    @SuppressWarnings("unchecked")
     public BCAArrayList(){
+
         listSize=0;
-        array=new Object[10];
+        array=(T[]) new Object[10];
     }
 
     @Override
-    public void add(Object o){
+    public void add(T o){
         if(listSize >= array.length-1){
             expand();
         }
@@ -22,7 +23,7 @@ public class BCAArrayList implements BCAList{
     }
 
     @Override
-    public void add(int index,Object o){
+    public void add(int index,T o){
         if(index<0||index>listSize){
             throw new ArrayIndexOutOfBoundsException();
         }
@@ -42,7 +43,7 @@ public class BCAArrayList implements BCAList{
     }
 
     @Override
-    public boolean contains(Object o){
+    public boolean contains(T o){
         for(int i=0;i<listSize;i++){
             if(array[i].equals(o))
                 return true;
@@ -51,7 +52,7 @@ public class BCAArrayList implements BCAList{
     }
 
     @Override
-    public Object get(int index){
+    public T get(int index){
         if(index<0||index >= listSize)
             throw new ArrayIndexOutOfBoundsException();
         return array[index];
@@ -72,8 +73,8 @@ public class BCAArrayList implements BCAList{
     }
 
     @Override
-    public int lastIndexOf(Object o){
-        for(int i=listSize-1;i>0;i--){
+    public int lastIndexOf(T o){
+        for(int i=listSize-1;i>=0;i--){
             if(array[i].equals(o))
                 return i;
         }
@@ -82,10 +83,10 @@ public class BCAArrayList implements BCAList{
     }
 
     @Override
-    public Object remove(int index){
+    public T remove(int index){
         if(index<0||index >= listSize)
             throw new ArrayIndexOutOfBoundsException();
-        Object ret=array[index];
+        T ret=array[index];
         for(int i=index;i<listSize;i++){
             array[i]=array[i+1];
         }
@@ -95,7 +96,7 @@ public class BCAArrayList implements BCAList{
     }
 
     @Override
-    public boolean remove(Object o){
+    public boolean remove(T o){
         for(int i=0;i<listSize;i++){
             if(array[i].equals(o)){
                 this.remove(i);
@@ -104,9 +105,9 @@ public class BCAArrayList implements BCAList{
         }
         return false;
     }
-
+    @SuppressWarnings("unchecked")
     private void expand(){
-        Object[] newArray=new Object[(int)(array.length*1.5)];
+        T[] newArray=(T[]) new Object[(int)(array.length*1.5)];
         System.arraycopy(array,0,newArray,0,array.length);
         for(int i=0;i<listSize;i++){
             newArray[i]=array[i];

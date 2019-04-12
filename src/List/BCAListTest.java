@@ -1,12 +1,11 @@
 package List;
-import List.BCAArrayList;
-import bca.util.BCAList;
+import bca.util.*;
 
 import java.util.Random;
 
 public class BCAListTest {
 	public static void main (String args[]) {
-		BCAList l = new BCALinkedList();
+		BCAList l = new BCAArrayList<Integer>();
 		Random rand = new Random(1000);
 
 		if (l.isEmpty())
