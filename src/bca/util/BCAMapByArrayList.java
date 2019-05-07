@@ -105,7 +105,7 @@ public class BCAMapByArrayList<V> implements BCAMap<V>{
     @Override
     @SuppressWarnings("unchecked")
     public BCAEntry<V>[] toArray(){
-        BCAEntry<V>[] ret = (BCAEntry<V>[]) new Object[map.size()];
+        BCAEntry<V>[] ret =new BCAEntry[map.size()];
         for(int i=0;i<map.size();i++){
             ret[i] = map.get(i);
         }

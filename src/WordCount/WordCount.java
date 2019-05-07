@@ -59,6 +59,7 @@ public class WordCount {
 
     System.out.println("\n1 buckets");
     wordCount(list, new BCAMapByHashedArrayList<Integer>(1));
+      wordCount(list, new BCAMapByHashedLinkedList<Integer>(1));
 
     System.out.println("\n10 buckets");
     wordCount(list, new BCAMapByHashedArrayList<Integer>(10));

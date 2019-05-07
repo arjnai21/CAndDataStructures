@@ -8,7 +8,7 @@ import bca.util.BCAList;
  * Linked list implementation of BCAList
  *
  */
-public class BCALinkedList implements BCAList{
+public class BCALinkedList<T> implements BCAList<T>{
     protected Node head=null;
     protected Node tail=null;
     protected int listSize=0;
@@ -18,7 +18,7 @@ public class BCALinkedList implements BCAList{
     }
 
     @Override
-    public void add(Object o){
+    public void add(T o){
         Node add=new Node(o);
         if(listSize<=0){
             head=add;
@@ -31,7 +31,7 @@ public class BCALinkedList implements BCAList{
     }
 
     @Override
-    public void add(int index,Object o){
+    public void add(int index,T o){
         if(index<0||index>listSize)
             throw new ArrayIndexOutOfBoundsException();
         Node add=new Node(o);
@@ -61,7 +61,7 @@ public class BCALinkedList implements BCAList{
     }
 
     @Override
-    public boolean contains(Object o){
+    public boolean contains(T o){
         Node curNode=head;
         for(int i=0;i<listSize;i++){
             if(curNode.data.equals(o))
@@ -72,18 +72,18 @@ public class BCALinkedList implements BCAList{
     }
 
     @Override
-    public Object get(int index){
+    public T get(int index){
         if(index<0||index >= listSize)
             throw new ArrayIndexOutOfBoundsException();
         Node curNode=head;
         for(int i=0;i<index;i++){
             curNode=curNode.next;
         }
-        return curNode.data;
+        return (T) curNode.data;
     }
 
     @Override
-    public int indexOf(Object o){
+    public int indexOf(T o){
         Node curNode=head;
         for(int i=0;i<listSize;i++){
             if(curNode.data.equals(o)){
@@ -100,7 +100,7 @@ public class BCALinkedList implements BCAList{
     }
 
     @Override
-    public int lastIndexOf(Object o){
+    public int lastIndexOf(T o){
         Node curNode=head;
         int ind=-1;
         for(int i=0;i<listSize;i++){
@@ -112,10 +112,10 @@ public class BCALinkedList implements BCAList{
     }
 
     @Override
-    public Object remove(int index){
+    public T remove(int index){
 
         if(index==0){
-            Object ret=head.data;
+            T ret= (T) head.data;
             head=head.next;
             listSize--;
             return ret;
@@ -125,7 +125,7 @@ public class BCALinkedList implements BCAList{
         for(int i=0;i<index-1;i++){
             curNode=curNode.next;
         }
-        Object ret=curNode.next.data;
+        T ret= (T) curNode.next.data;
         curNode.next=curNode.next.next;
         if(index==listSize-1){
             tail=curNode;
@@ -135,7 +135,7 @@ public class BCALinkedList implements BCAList{
     }
 
     @Override
-    public boolean remove(Object o){
+    public boolean remove(T o){
         Node curNode=head;
         for(int i=0;i<listSize;i++){
             if(curNode.data.equals(o)){
@@ -172,11 +172,11 @@ public class BCALinkedList implements BCAList{
      * BCALinkedList can use it but it is not obviously accessible to other classes.
      * (We can use "private" to hide it from outside classes, but we will leave it accessible)
      */
-    private class Node{
-        Object data;
+    protected class Node<T>{
+        T data;
         Node next=null;
 
-        public Node(Object o){
+        protected Node(T o){
             data=o;
         }
     }

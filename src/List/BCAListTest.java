@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class BCAListTest {
 	public static void main (String args[]) {
-		BCAList l = new BCAArrayList<Integer>();
+		BCAList l = new BCALinkedList();
 		Random rand = new Random(1000);
 
 		if (l.isEmpty())
