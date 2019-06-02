@@ -1,3 +1,5 @@
+package Markov;
+
 import java.util.Scanner;
 import java.lang.StringBuilder;
 import java.lang.IllegalArgumentException;

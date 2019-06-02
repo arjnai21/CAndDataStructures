@@ -1,3 +1,5 @@
+package Markov;
+
 import bca.util.*;
 import java.util.Arrays;
 import java.util.Random;
